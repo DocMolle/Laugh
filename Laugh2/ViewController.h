@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <RedditKit/RedditKit.h>
+#import "ITSwitch/ITSwitch.h"
 
 @interface ViewController : NSViewController <NSTableViewDelegate, NSTableViewDataSource> {
     NSArray *items;
@@ -16,6 +17,8 @@
 @property (weak) IBOutlet NSTableView *tableView;
 @property (weak) IBOutlet NSImageView *imgView;
 @property (weak) IBOutlet NSTextField *subredditSearchTF;
+@property (weak) IBOutlet NSTextField *lblSubredditName;
+@property (weak) IBOutlet ITSwitch *isNSFW;
 
 
 @end

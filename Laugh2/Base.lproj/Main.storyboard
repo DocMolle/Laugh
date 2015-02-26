@@ -676,7 +676,7 @@
                                 <rect key="frame" x="0.0" y="-3" width="267" height="407"/>
                                 <subviews>
                                     <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="67" horizontalPageScroll="10" verticalLineScroll="67" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E25-yO-24X">
-                                        <rect key="frame" x="0.0" y="0.0" width="292" height="341"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="292" height="306"/>
                                         <clipView key="contentView" ambiguous="YES" misplaced="YES" drawsBackground="NO" copiesOnScroll="NO" id="l7d-sn-fXy">
                                             <rect key="frame" x="1" y="0.0" width="238" height="134"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -753,17 +753,50 @@
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
+                                        <connections>
+                                            <action selector="enterPressed:" target="XfG-lQ-9wD" id="4Pf-RU-6q2"/>
+                                        </connections>
                                     </textField>
+                                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T52-Tv-sQ3" customClass="ITSwitch">
+                                        <rect key="frame" x="215" y="321" width="32" height="20"/>
+                                        <connections>
+                                            <action selector="switchChanged:" target="XfG-lQ-9wD" id="BGg-l7-JUA"/>
+                                        </connections>
+                                    </customView>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xZx-HY-iT6">
+                                        <rect key="frame" x="20" y="323" width="43" height="17"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="NSFW" id="X4i-Cy-LeF">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Kif-Dd-HTs">
+                                        <rect key="frame" x="22" y="312" width="225" height="5"/>
+                                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <font key="titleFont" metaFont="system"/>
+                                    </box>
                                 </subviews>
                             </visualEffectView>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GF7-8g-9Th">
-                                <rect key="frame" x="266" y="0.0" width="565" height="404"/>
+                                <rect key="frame" x="266" y="0.0" width="565" height="321"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="ET7-e4-ZqO"/>
                             </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="495-nE-9fJ" userLabel="lblSubredditName">
+                                <rect key="frame" x="280" y="363" width="156" height="21"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="5UD-V9-uSa">
+                                    <font key="font" metaFont="system" size="17"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="imgView" destination="GF7-8g-9Th" id="MK2-7X-cOO"/>
+                        <outlet property="isNSFW" destination="T52-Tv-sQ3" id="CR0-N2-iZF"/>
+                        <outlet property="lblSubredditName" destination="495-nE-9fJ" id="kIn-18-UUk"/>
                         <outlet property="subredditSearchTF" destination="a0i-8m-TvW" id="9E6-UA-sBi"/>
                         <outlet property="tableView" destination="68r-aF-Bmd" id="zqx-RQ-yiu"/>
                     </connections>

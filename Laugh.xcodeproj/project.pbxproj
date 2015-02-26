@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A353614AAD189D1252BCCF27 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0880F94AE1DEEC82ADD8A94F /* libPods.a */; };
+		D95530EE1A9F89A200A503D8 /* ITSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = D95530ED1A9F89A200A503D8 /* ITSwitch.m */; };
 		D959C2521A9D2CBD004C3A42 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D959C2511A9D2CBD004C3A42 /* AppDelegate.m */; };
 		D959C2541A9D2CBD004C3A42 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D959C2531A9D2CBD004C3A42 /* main.m */; };
 		D959C2571A9D2CBD004C3A42 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D959C2561A9D2CBD004C3A42 /* ViewController.m */; };
@@ -33,6 +34,8 @@
 		0880F94AE1DEEC82ADD8A94F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F3936EA20B29D8749FFDA8B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A2E6ED6A9210C0FC468493DB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		D95530EC1A9F89A200A503D8 /* ITSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITSwitch.h; sourceTree = "<group>"; };
+		D95530ED1A9F89A200A503D8 /* ITSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITSwitch.m; sourceTree = "<group>"; };
 		D959C24B1A9D2CBD004C3A42 /* Laugh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Laugh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D959C24F1A9D2CBD004C3A42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D959C2501A9D2CBD004C3A42 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -81,6 +84,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D95530EB1A9F89A200A503D8 /* ITSwitch */ = {
+			isa = PBXGroup;
+			children = (
+				D95530EC1A9F89A200A503D8 /* ITSwitch.h */,
+				D95530ED1A9F89A200A503D8 /* ITSwitch.m */,
+			);
+			path = ITSwitch;
+			sourceTree = "<group>";
+		};
 		D959C2421A9D2CBD004C3A42 = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +116,7 @@
 		D959C24D1A9D2CBD004C3A42 /* Laugh2 */ = {
 			isa = PBXGroup;
 			children = (
+				D95530EB1A9F89A200A503D8 /* ITSwitch */,
 				D959C2711A9D2D20004C3A42 /* AppTableView.h */,
 				D959C2721A9D2D20004C3A42 /* AppTableView.m */,
 				D959C2731A9D2D20004C3A42 /* ItemCellView.h */,
@@ -291,6 +304,7 @@
 			files = (
 				D959C2571A9D2CBD004C3A42 /* ViewController.m in Sources */,
 				D959C2791A9D2EC8004C3A42 /* WIndowController.m in Sources */,
+				D95530EE1A9F89A200A503D8 /* ITSwitch.m in Sources */,
 				D959C2751A9D2D20004C3A42 /* AppTableView.m in Sources */,
 				D959C2541A9D2CBD004C3A42 /* main.m in Sources */,
 				D959C2521A9D2CBD004C3A42 /* AppDelegate.m in Sources */,

@@ -18,34 +18,49 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChange:) name:NSControlTextDidChangeNotification object:nil];
-    
-    [self loadLinksForSubredditWithName:@"picss"];
+    [self loadLinksForSubredditWithName:@"pics"];
 }
 
--(void) textDidChange:(NSNotification*)obj {
-    if([obj object] == self.subredditSearchTF){
-        [self loadLinksForSubredditWithName:self.subredditSearchTF.stringValue];
-    }
+
+
+- (IBAction)enterPressed:(id)sender {
+    [self loadLinksForSubredditWithName:self.subredditSearchTF.stringValue];
 }
+- (IBAction)switchChanged:(ITSwitch *)itSwitch {
+    NSLog(@"Switch (%@) is %@", itSwitch, itSwitch.isOn ? @"enabled" : @"disabled");
+    [self loadLinksForSubredditWithName:self.subredditSearchTF.stringValue];
+}
+
 
 - (void) loadLinksForSubredditWithName:(NSString *) name {
-    
-//    [[RKClient sharedClient] searchForSubredditsByName:name pagination:nil completion:^(NSArray *subreddits, RKPagination *pagination, NSError *error) {
-//        NSLog(@"Subreddits: %@", subreddits);
-//    }];
-    
     [[RKClient sharedClient] subredditWithName:name completion:^(RKSubreddit *subreddit, NSError *error) {
-        NSLog(@"URL: %@",[subreddit URL]);
         if(subreddit){
+            [self.lblSubredditName setStringValue:[subreddit title]];
             [[RKClient sharedClient] linksInSubreddit:subreddit category:RKSubredditCategoryHot pagination:nil completion:^(NSArray *links, RKPagination *pagination, NSError *error) {
                 NSLog(@"Links: %@", links);
-                items = links;
+                if(self.isNSFW.isOn){
+                    items = [self sortOutNSFWForLinks:links];
+                } else {
+                    items = links;
+                }
                 [self.tableView reloadData];
             }];
         }
         
     }];
+}
+
+- (NSArray*)sortOutNSFWForLinks:(NSArray*)links {
+    NSMutableArray *itemsWithoutNSFW = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < [links count]; i++) {
+        RKLink *current = links[i];
+        if(![current isNSFW]){
+            [itemsWithoutNSFW addObject:current];
+        }
+    }
+    
+    return itemsWithoutNSFW;
 }
 
 - (void)setRepresentedObject:(id)representedObject {
