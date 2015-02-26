@@ -57,6 +57,10 @@
         self.imgView.imageScaling = NSImageScaleProportionallyUpOrDown;
         self.imgView.animates = YES;
         [self.imgView setImage:imageFromBundle];
+    
+    //Copy link to clipboard
+    [[NSPasteboard generalPasteboard] clearContents];
+    [[NSPasteboard generalPasteboard] setString:[imageURL absoluteString]  forType:NSStringPboardType];
    
 }
 
