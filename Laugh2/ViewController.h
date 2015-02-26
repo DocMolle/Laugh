@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSArray *items;
 @property (weak) IBOutlet NSTableView *tableView;
 @property (weak) IBOutlet NSImageView *imgView;
+@property (weak) IBOutlet NSTextField *subredditSearchTF;
 
 
 @end

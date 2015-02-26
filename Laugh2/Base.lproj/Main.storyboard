@@ -676,7 +676,7 @@
                                 <rect key="frame" x="0.0" y="-3" width="267" height="407"/>
                                 <subviews>
                                     <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="67" horizontalPageScroll="10" verticalLineScroll="67" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E25-yO-24X">
-                                        <rect key="frame" x="0.0" y="0.0" width="292" height="379"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="292" height="341"/>
                                         <clipView key="contentView" ambiguous="YES" misplaced="YES" drawsBackground="NO" copiesOnScroll="NO" id="l7d-sn-fXy">
                                             <rect key="frame" x="1" y="0.0" width="238" height="134"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -737,7 +737,7 @@
                                             <rect key="frame" x="1" y="114.42630755901337" width="228" height="15"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
-                                        <scroller key="verticalScroller" hidden="YES" horizontalHuggingPriority="245" verticalHuggingPriority="750" alphaValue="0.0" arrowsPosition="none" doubleValue="0.071428571428571425" controlSize="mini" horizontal="NO" id="Jsj-UM-S7E">
+                                        <scroller key="verticalScroller" hidden="YES" horizontalHuggingPriority="245" verticalHuggingPriority="750" alphaValue="0.0" arrowsPosition="none" doubleValue="1" controlSize="mini" horizontal="NO" id="Jsj-UM-S7E">
                                             <rect key="frame" x="224" y="17" width="15" height="102"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
@@ -746,6 +746,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableHeaderView>
                                     </scrollView>
+                                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a0i-8m-TvW">
+                                        <rect key="frame" x="20" y="349" width="227" height="22"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Enter a Subreddit" bezelStyle="round" id="Ybh-IK-cXq">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
                                 </subviews>
                             </visualEffectView>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GF7-8g-9Th">
@@ -756,6 +764,7 @@
                     </view>
                     <connections>
                         <outlet property="imgView" destination="GF7-8g-9Th" id="MK2-7X-cOO"/>
+                        <outlet property="subredditSearchTF" destination="a0i-8m-TvW" id="9E6-UA-sBi"/>
                         <outlet property="tableView" destination="68r-aF-Bmd" id="zqx-RQ-yiu"/>
                     </connections>
                 </viewController>

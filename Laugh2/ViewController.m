@@ -18,19 +18,34 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [[RKClient sharedClient] subredditWithName:@"funny" completion:^(RKSubreddit *subreddit, NSError *error) {
-        NSLog(@"URL: %@",[subreddit URL]);
-        
-        [[RKClient sharedClient] linksInSubreddit:subreddit category:RKSubredditCategoryHot pagination:nil completion:^(NSArray *links, RKPagination *pagination, NSError *error) {
-            NSLog(@"Links: %@", links);
-            items = links;
-            [self.tableView reloadData];
-        }];
-    }];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChange:) name:NSControlTextDidChangeNotification object:nil];
     
-    
-    
+    [self loadLinksForSubredditWithName:@"picss"];
+}
 
+-(void) textDidChange:(NSNotification*)obj {
+    if([obj object] == self.subredditSearchTF){
+        [self loadLinksForSubredditWithName:self.subredditSearchTF.stringValue];
+    }
+}
+
+- (void) loadLinksForSubredditWithName:(NSString *) name {
+    
+//    [[RKClient sharedClient] searchForSubredditsByName:name pagination:nil completion:^(NSArray *subreddits, RKPagination *pagination, NSError *error) {
+//        NSLog(@"Subreddits: %@", subreddits);
+//    }];
+    
+    [[RKClient sharedClient] subredditWithName:name completion:^(RKSubreddit *subreddit, NSError *error) {
+        NSLog(@"URL: %@",[subreddit URL]);
+        if(subreddit){
+            [[RKClient sharedClient] linksInSubreddit:subreddit category:RKSubredditCategoryHot pagination:nil completion:^(NSArray *links, RKPagination *pagination, NSError *error) {
+                NSLog(@"Links: %@", links);
+                items = links;
+                [self.tableView reloadData];
+            }];
+        }
+        
+    }];
 }
 
 - (void)setRepresentedObject:(id)representedObject {
