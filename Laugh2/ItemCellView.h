@@ -12,5 +12,7 @@
 
 @property (nonatomic, retain) IBOutlet NSTextField *dateTextField;
 @property (nonatomic, retain) IBOutlet NSTextField *authorField;
+@property (weak) IBOutlet NSImageView *previewImageVIew;
+
 
 @end

@@ -27,7 +27,7 @@
     [self loadLinksForSubredditWithName:self.subredditSearchTF.stringValue];
 }
 - (IBAction)switchChanged:(ITSwitch *)itSwitch {
-    NSLog(@"Switch (%@) is %@", itSwitch, itSwitch.isOn ? @"enabled" : @"disabled");
+    //NSLog(@"Switch (%@) is %@", itSwitch, itSwitch.isOn ? @"enabled" : @"disabled");
     [self loadLinksForSubredditWithName:self.subredditSearchTF.stringValue];
 }
 
@@ -37,7 +37,7 @@
         if(subreddit){
             [self.lblSubredditName setStringValue:[subreddit title]];
             [[RKClient sharedClient] linksInSubreddit:subreddit category:RKSubredditCategoryHot pagination:nil completion:^(NSArray *links, RKPagination *pagination, NSError *error) {
-                NSLog(@"Links: %@", links);
+                //NSLog(@"Links: %@", links);
                 if(self.isNSFW.isOn){
                     items = [self sortOutNSFWForLinks:links];
                 } else {
@@ -81,17 +81,33 @@
 -(void)tableViewSelectionDidChange:(NSNotification *)notification {
     NSInteger selected = [self.tableView selectedRow];
     RKLink *selectedLink = items[selected];
-   
-        NSURL *imageURL = [selectedLink URL];
-        NSImage *imageFromBundle = [[NSImage alloc] initWithContentsOfURL:imageURL];
+    NSURL *selectedLinkURL = [selectedLink URL];
+    NSString *media = ([selectedLink isImageLink] ? @"YES" : @"NO") ;
+    
+    NSLog(@"Link %@ is media: %@", selectedLinkURL, media);
+    
+    if([selectedLink isImageLink]){
+        NSImage *imageFromBundle = [self getImageFromURL:selectedLinkURL];
         self.imgView.imageScaling = NSImageScaleProportionallyUpOrDown;
         self.imgView.animates = YES;
         [self.imgView setImage:imageFromBundle];
+    } else {
+        [[RKClient sharedClient] commentsForLink:selectedLink completion:^(NSArray *comments, RKPagination *pagination, NSError *error) {
+            NSLog(@"Comments: %@", comments);
+        }];
+    }
+    
     
     //Copy link to clipboard
     [[NSPasteboard generalPasteboard] clearContents];
-    [[NSPasteboard generalPasteboard] setString:[imageURL absoluteString]  forType:NSStringPboardType];
+    [[NSPasteboard generalPasteboard] setString:[selectedLinkURL absoluteString]  forType:NSStringPboardType];
    
+}
+
+
+- (NSImage *) getImageFromURL:(NSURL *) url {
+    NSImage *image = [[NSImage alloc] initWithContentsOfURL:url];
+    return image;
 }
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
@@ -106,10 +122,13 @@
         
         NSString *title = [items[row] title];
         NSString *author = [items[row] author];
+        NSImage *thumbnailImage = [self getImageFromURL:[items[row] thumbnailURL]];
+        
         NSString * submitted = [@"Submitted by " stringByAppendingString:author];
         
         [cellView.textField setStringValue:title];
         [cellView.authorField setStringValue:submitted];
+        [cellView.previewImageVIew setImage:thumbnailImage];
         return cellView;
     }
     return nil;
